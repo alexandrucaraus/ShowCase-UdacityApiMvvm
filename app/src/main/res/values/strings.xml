@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">Udacity Courses</string>
+
+    <string name="simple_fragment_transition">transition</string>
+
+    <string name="course_list_refresh_done">Course list up to date!</string>
+
+    <string name="no_course_list_data">No data</string>
+
+</resources>

@@ -1,0 +1,177 @@
+{
+    "courses": [
+        {
+            "available": true,
+            "banner_image": "https://lh3.googleusercontent.com/8atGUyYPZjJOZjRi1vVDde3iImnFNMjqdeEtnKvpO3Gm-_FZemmwri-VItfBoNMYP2S-SbXG6NBAXxat39s=s0#w=1784&h=827",
+            "capped": false,
+            "enables_profiles": false,
+            "expected_duration": 2,
+            "expected_duration_high": 0,
+            "expected_duration_low": 2,
+            "expected_duration_unit": "weeks",
+            "expected_learning": "<p>Ever heard of the term garbage in, garbage out? This is as true in analytics as it is anywhere else. In this course, you’ll learn how to prepare data to ensure the efficacy of your analysis, a foundational skill for anyone using advanced analytics. You&#39;ll learn this through improving your fluency in Alteryx, a data analytics tool that enables you prepare, blend, and analyze data quickly. This course is ideal for anyone who is interested in pursuing a career in business analysis, but lacks programming experience.</p>\n",
+            "faq": "",
+            "featured": false,
+            "full_course_available": false,
+            "graduate_groups": [],
+            "image": "https://lh3.googleusercontent.com/IEeLrMJRDg3Q5n8YttgIS9kze0BsL9kArguYfpE_jzWVHQCBVRnVGCFr3La2CJN6qH85PnMrMOa71wSHTw=s0#w=1399&h=736",
+            "key": "ud977",
+            "level": "beginner",
+            "new_release": false,
+            "open_for_enrollment": false,
+            "public_listing": true,
+            "required_knowledge": "<p><li>No programming experience required\n<li>Interested in using data to make better business decisions\n<li>Alteryx license (provided to nanodegree students at no cost, compatible with Windows only)</p>\n",
+            "short_summary": "Learn how to prepare data to ensure the efficacy of your analysis while improving fluency in Alteryx.",
+            "slug": "creating-an-analytical-dataset--ud977",
+            "starter": false,
+            "student_groups": [],
+            "subtitle": "Prepare data for analysis and modeling",
+            "summary": "<p>The Creating an Analytical Dataset course provides students with foundational knowledge to input, clean, blend, and format data in preparation for analysis. You will learn:<br>\n<li>The common sources and types of data<br>\n<li> To identify and correct common issues with data <br>\n<li>To format data in useful ways for analysis<br>\n<li> To blend data from multiple sources together</p>\n\n<p>Throughout this course you’ll also learn the techniques to apply your knowledge in a data analytics program called Alteryx. At the end of the course, you’ll complete a project based on the principles in the course..</p>\n\n<p>This course is part of the Business Analyst Nanodegree.</p>\n",
+            "syllabus": "<p><b>Lesson 1 - Understanding Data</b><br>\n<br>In this lesson you’ll learn the differences between structured, unstructured, and semistructured data. You’ll also be introduced to the most common data types: string, number, date/time, boolean, and special characters. </p>\n\n<p><b>Lesson 2 - Data Issues</b><br>\n<br>In this lesson you’ll learn how clean dirty data and prepare it for analysis. You’ll learn how identify and correct for common data issues like missing data, duplicate data, special characters, and outliers.</p>\n\n<p><b>Lesson 3 - Data Formatting</b><br>\n<br>In this lesson you’ll learn the impact of the format of the data can have on your analysis. You’ll learn how to use common formatting techniques such as transposing, aggregation, and cross tabulation.</p>\n\n<p><b>Lesson 4 - Data Blending</b><br>\n<br>In this lesson you’ll learn how to combine data from multiple sources into a single dataset. You’ll learn how to use common blending techniques such as joins, unions, fuzzy matching, and spatial blending.</p>\n",
+            "tags": [],
+            "teaser_video": {
+                "youtube_url": "",
+                "transcodings": {}
+            },
+            "title": "Creating an Analytical Dataset",
+            "flags": {
+                "capped": false,
+                "starter": false,
+                "featured": false,
+                "available": true,
+                "new_release": false,
+                "public_listing": true,
+                "enables_profiles": false,
+                "open_for_enrollment": false,
+                "full_course_available": false
+            },
+            "affiliates": [
+                {
+                    "key": "5448383925583872",
+                    "name": "Alteryx",
+                    "image": "https://s3-us-west-1.amazonaws.com/udacity-content/partner/logo-color-alteryx-9aac6df.svg"
+                }
+            ],
+            "tracks": [
+                "All",
+                "Data Science",
+                "Data Analytics"
+            ],
+            "projects": [
+                {
+                    "key": "7705071773",
+                    "name": "Select the Location of a New Pet Store",
+                    "description": "<p>A pet store chain is selecting the location for its next store. You will use data preparation techniques to build a robust analytic dataset and use it to build a predictive model to select the best location.</p>\n"
+                }
+            ],
+            "related_degree_keys": [
+                "nd008"
+            ],
+            "instructors": [
+                {
+                    "key": "maureen-wolfson",
+                    "name": "Maureen Wolfson",
+                    "image": "https://s3-us-west-1.amazonaws.com/udacity-content/instructor/maureen-wolfson%402x-9c8500a.jpg",
+                    "bio": "<p>Maureen Wolfson is a Solutions Engineering Practice Lead at Alteryx, Inc.  She has over 20 years of experience in data analytics specializing in data preparation, customer and geospatial analytics.  She has worked at Alteryx for the past 13 years in product management, support, training, account management and solutions engineering positions.  Maureen has a Bachelor of Environmental Studies from Waterloo University and an MBA from York University.  In her spare time, you can find Maureen outdoors… exploring on mountain, road or cross bikes.</p>\n",
+                    "title": "Instructor"
+                }
+            ],
+            "project_description": "[DEPRECATED] use \"projects\"",
+            "project_name": "[DEPRECATED] use \"projects\"",
+            "assistants": [
+                "[DEPRECATED] use \"instructors\""
+            ]
+        },
+        {
+            "available": true,
+            "banner_image": "",
+            "capped": false,
+            "enables_profiles": false,
+            "expected_duration": 16,
+            "expected_duration_high": 0,
+            "expected_duration_low": 16,
+            "expected_duration_unit": "weeks",
+            "expected_learning": "<p>As sensors, actuators, and embedded computing become less expensive, Cyber-Physical Systems (systems that combine closely linked software and physical components)  are becoming increasingly part of our daily lives. Automotive, medical, and aeronautical applications are only a small part of an ongoing revolution whereby automated and intelligent machines will interact closely with humans. This course introduces not only the enormous design space offered by Cyber-Physical Systems (CPS) but also the trade-off that must be struck with indispensable safety requirements. Powerful CPS design frameworks are introduced to perform this trade-off, ranging from hardware to software engineering and from system design to validation.</p>\n",
+            "faq": "",
+            "featured": false,
+            "full_course_available": true,
+            "graduate_groups": [],
+            "image": "https://lh3.googleusercontent.com/hcWZo9c1SlolnBIjWUfUc8wLFhtnARWcKLrpxH_Dm0AVsHo_GoR_J8WjpVk-mE5-xxm7qwxHGTlcvqSUqGM=s0#w=1750&h=1076",
+            "key": "ud9876",
+            "level": "advanced",
+            "new_release": false,
+            "open_for_enrollment": true,
+            "public_listing": true,
+            "required_knowledge": "<p>An undergraduate education in Engineering or Computer Science, with programming experience.</p>\n",
+            "short_summary": "This course provides an introduction to cyber-physical systems with an industrial perspective.",
+            "slug": "cyber-physical-systems-design-analysis--ud9876",
+            "starter": false,
+            "student_groups": [],
+            "subtitle": "",
+            "summary": "<p>Cyber-physical systems, such as automobiles, cars, and medical devices, comprise both a physical part and a software part, whereby the physical part of the system sends information about itself to the software part, and the software sends information, usually in the form of commands, to the physical part. </p>\n\n<p>Physical systems have &quot;a life of their own,&quot; and they can often harm operators and/or cost a fortune to repair, the development of programs that control these systems cannot rely on &quot;trial and error,&quot; and they must consider in-depth the role of the human operator. </p>\n\n<p>This course introduces the principles, tools, models, and processes essential to cyber-physical system development, such as model-based development methods, basics of feedback for task scheduling, modern verification, and validation techniques, and their integration in today&#39;s industrial development processes.</p>\n",
+            "syllabus": "<h1>CPS design</h1>\n\n<ul>\n<li>Models&#39;</li>\n<li>Low-level control</li>\n<li>Mid- and High-level automation</li>\n</ul>\n\n<h1>CPS environment</h1>\n\n<ul>\n<li>Humans and CPS</li>\n<li>Hardware-software co-design</li>\n<li>Sensors, actuators, and processors</li>\n</ul>\n\n<h1>CPS engineering</h1>\n\n<ul>\n<li>General principles</li>\n<li>Architecture and Design Language</li>\n<li>Formal methods for Verification and Validation</li>\n</ul>\n",
+            "tags": [],
+            "teaser_video": {
+                "youtube_url": "",
+                "transcodings": {}
+            },
+            "title": "Cyber-Physical Systems Design & Analysis",
+            "flags": {
+                "capped": false,
+                "starter": false,
+                "featured": false,
+                "available": true,
+                "new_release": false,
+                "public_listing": true,
+                "enables_profiles": false,
+                "open_for_enrollment": true,
+                "full_course_available": true
+            },
+            "affiliates": [
+                {
+                    "key": "gt",
+                    "name": "Georgia Institute of Technology",
+                    "image": "https://s3-us-west-1.amazonaws.com/udacity-content/partner/logo-color-georgiatech-f6c90b2.svg"
+                }
+            ],
+            "tracks": [],
+            "projects": [],
+            "related_degree_keys": [],
+            "instructors": [
+                {
+                    "key": "eric-feron",
+                    "name": "Eric Feron",
+                    "image": "https://s3.amazonaws.com/jakku-content/instructors/eric-feron.jpg",
+                    "bio": "<p>Eric Feron has been the Dutton-Ducoffe Professor of Aerospace Software Engineering at the Georgia Institute of Technology since 2005. Prior to that, he was on the faculty of MIT&#39;s department of Aeronautics and Astronautics from 1993 until 2005. He holds his BS, MS and PhD degrees from Ecole Polytechnique, France, Ecole Normale Suprieure, France and Stanford University, United States. Eric Feron&#39;s interests are to use fundamental concepts of control systems, optimization and computer science to address important problems in aerospace engineering, including: Aerobatic control of unmanned aerial vehicles, multi-agent operations, including air traffic control systems and aerospace software system certification. Eric Feron has published two books and several research papers; his former research students are distributed throughout academia, government and industry. He is an advisor to the Academy of Technologies, France. When he is not in his office, Eric Feron may be found sailing along the coast of Florida.\n<a href=\"http://www.feron.org/Eric/\">http://www.feron.org/Eric/</a></p>\n",
+                    "title": "Instructor"
+                },
+                {
+                    "key": "pablo-afman",
+                    "name": "Pablo Afman",
+                    "image": "https://s3.amazonaws.com/jakku-content/instructors/pablo-afman.jpg",
+                    "bio": "",
+                    "title": "Instructor"
+                },
+                {
+                    "key": "jerome-hughes",
+                    "name": "Jerome Hughes ",
+                    "image": "https://s3.amazonaws.com/jakku-content/instructors/jerome-hugues.jpg",
+                    "bio": "",
+                    "title": "Instructor"
+                },
+                {
+                    "key": "bruce-lewis",
+                    "name": "Bruce Lewis",
+                    "image": "https://s3.amazonaws.com/jakku-content/instructors/bruce-lewis.jpg",
+                    "bio": "",
+                    "title": "Instructor"
+                }
+            ],
+            "project_description": "[DEPRECATED] use \"projects\"",
+            "project_name": "[DEPRECATED] use \"projects\"",
+            "assistants": [
+                "[DEPRECATED] use \"instructors\""
+            ]
+        }
+    ]
+}
