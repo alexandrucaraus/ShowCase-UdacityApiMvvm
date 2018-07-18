@@ -18,8 +18,7 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:transitionName="@string/simple_fragment_transition"/>
+            android:layout_alignParentTop="true" />
 
         <TextView
             android:id="@+id/courseItemTitle"
@@ -42,7 +41,6 @@
             android:layout_toEndOf="@+id/courseItemImage"
             android:layout_below="@+id/courseItemTitle"
             style="@style/AppTheme.CardBodyTextStyle"
-
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="4dp"

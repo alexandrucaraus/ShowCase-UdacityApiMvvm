@@ -1,22 +1,32 @@
 package eu.caraus.dynamo.application.ui.main.znav
 
-import android.support.transition.ChangeBounds
-import android.support.transition.ChangeImageTransform
-import android.support.transition.ChangeTransform
-import android.support.transition.TransitionSet
+import android.content.Context
+import android.support.transition.*
+import android.support.v4.view.animation.FastOutSlowInInterpolator
+import android.util.AttributeSet
 
+class DetailsTransition : TransitionSet {
 
-class DetailsTransition : TransitionSet() {
+    constructor() {
+        init()
+    }
 
-    init {
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        init()
+    }
+
+    private fun init() {
+
+        interpolator = FastOutSlowInInterpolator()
 
         ordering = ORDERING_TOGETHER
 
-        addTransition( ChangeBounds()).
-        addTransition( ChangeTransform()).
-        addTransition( ChangeImageTransform())
+        duration = 300
+
+        addTransition( ChangeClipBounds() )
+        .addTransition( ChangeTransform())
+        .addTransition( ChangeBounds())
 
     }
 
 }
-

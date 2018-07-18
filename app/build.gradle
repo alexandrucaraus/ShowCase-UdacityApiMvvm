@@ -54,7 +54,7 @@ ext {
     icePickVersion = "3.2.0-SNAPSHOT"
     parcelerVersion = "1.1.6"
     butterKnifeVersion = "8.5.1"
-    easyPermissionVersion = "1.0.1"
+    easyPermissionVersion = "1.2.0"
     bottomSheetBuilderVersion = "1.6.0"
     rxLocationVersion = "1.0.4"
     googlePlayVersion = "15.0.0"

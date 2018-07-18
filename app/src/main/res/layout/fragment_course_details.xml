@@ -20,10 +20,9 @@
             android:id="@+id/courseItemImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="200dp"
             android:layout_alignParentTop="true"
-            android:src="@color/colorPrimaryDark"
-            android:transitionName="@string/simple_fragment_transition"/>
+            android:minHeight="200dp"
+            android:transitionName="transitionImage" />
 
         <android.support.v7.widget.CardView
             android:id="@+id/cvCourseInfo"
@@ -42,15 +41,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/AppTheme.CardHeadLineTextStyle"
-
-                    android:text="Course Title" />
+                    android:text="Course Title"
+                    />
 
                 <TextView
                     android:id="@+id/courseItemSummary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/courseItemTitle"
-
                     style="@style/AppTheme.CardBodyTextStyle"
                     android:text="Course Summary"
                     />
@@ -87,7 +85,6 @@
                     android:layout_toEndOf="@+id/courseInstructorImage"
                     android:layout_margin="8dp"
                     style="@style/AppTheme.CardHeadLineTextStyle"
-
                     android:text="Instructor title" />
 
                 <TextView
@@ -97,7 +94,6 @@
                     android:layout_below="@+id/courseInstructorImage"
                     android:layout_margin="8dp"
                     style="@style/AppTheme.CardBodyTextStyle"
-
                     android:text="Instructor bio" />
 
             </RelativeLayout>

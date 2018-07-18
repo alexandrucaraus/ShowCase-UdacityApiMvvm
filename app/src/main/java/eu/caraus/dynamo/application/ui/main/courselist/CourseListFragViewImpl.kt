@@ -1,91 +1,75 @@
 package eu.caraus.dynamo.application.ui.main.courselist
 
+import android.arch.lifecycle.Observer
+
 import android.os.Bundle
-import android.os.Handler
-import android.support.annotation.IdRes
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import eu.caraus.dynamo.R
-import eu.caraus.dynamo.application.domain.udacity.CoursesItem
-import eu.caraus.dynamo.application.ui.base.BaseFragment
+
 import kotlinx.android.synthetic.main.fragment_course_list.view.*
-import javax.inject.Inject
+
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
+import android.view.ViewTreeObserver
+import android.widget.ImageView
+
+import eu.caraus.dynamo.application.domain.udacity.CoursesItem
+
+import eu.caraus.dynamo.R
+import eu.caraus.dynamo.application.ui.base.BaseActivity
+import eu.caraus.dynamo.application.ui.base.BaseFragment
+import eu.caraus.dynamo.application.ui.main.znav.MainNavigation
 
 
-class CourseListFragViewImpl : BaseFragment(), CourseListContract.View {
+import javax.inject.Inject
+
+class CourseListFragViewImpl : BaseFragment() , CourseListAdapter.CourseListCallback {
+
 
     companion object {
-
         val TAG = CourseListFragViewImpl::class.java.simpleName!!
-
         private const val SCROLL_TO_COURSE_ID = "SCROLL_TO_COURSE_ID"
-
         fun newInstance(): CourseListFragViewImpl {
-
             val fragment = CourseListFragViewImpl()
-
             val bundle = Bundle()
-
             fragment.arguments = bundle
-
             return fragment
         }
 
         fun newInstance( courseId : String ): CourseListFragViewImpl {
-
             val fragment = CourseListFragViewImpl()
-
             val bundle = Bundle()
-
             bundle.putString( SCROLL_TO_COURSE_ID, courseId )
-
             fragment.arguments = bundle
-
             return fragment
         }
-
     }
 
     @Inject
-    lateinit var presenter : CourseListContract.Presenter
+    lateinit var viewModel : CourseListViewModel
 
-    lateinit var adapter: CourseListAdapter
+    @Inject
+    lateinit var navigator : MainNavigation
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        lifecycle.addObserver( presenter )
-    }
+    private lateinit var adapter   : CourseListAdapter
 
-    override fun onDestroy() {
-        lifecycle.removeObserver( presenter)
-        super.onDestroy()
-    }
-
-    override fun onResume() {
-        presenter.onViewAttached(this)
-        super.onResume()
-    }
-
-    override fun onPause() {
-        presenter.onViewDetached(true)
-        super.onPause()
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?): View? {
         val view = inflater.inflate( R.layout.fragment_course_list, null)
-        init(view)
+        init( view, bundle)
         return view
     }
 
-    private fun init( view: View ) {
+    private fun init( view: View, bundle: Bundle? ) {
+
+        (activity as BaseActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+        view.progress.visibility = View.VISIBLE
 
         view.rvCourseList.layoutManager = LinearLayoutManager( context )
 
-        adapter = CourseListAdapter( mutableListOf(), presenter )
+        adapter = CourseListAdapter( mutableListOf(), this)
         adapter.registerAdapterDataObserver( object : RecyclerView.AdapterDataObserver() {
             override fun onChanged() {
                 super.onChanged()
@@ -94,50 +78,74 @@ class CourseListFragViewImpl : BaseFragment(), CourseListContract.View {
         })
 
         view.rvCourseList.adapter = adapter
+        view.srlCourseList.setOnRefreshListener { viewModel.getFreshData() }
 
-        view.srlCourseList.setOnRefreshListener { presenter.refresh() }
+        viewModel.courseListLifeData?.observe( this, Observer<MutableList<CoursesItem>>{
+            showList(it)
+        })
 
-    }
-
-    override fun addItems( itemList: List<CoursesItem> ) {
-
-        adapter.addItems( itemList )
-
-        refreshDone { snack(R.string.course_list_refresh_done) }
+        waitRecycleViewToRender( view )
 
     }
 
-    override fun showPlaceholder() {
-        view?.placeholder?.visibility = View.VISIBLE
+    private fun waitRecycleViewToRender( view: View ){
+        postponeEnterTransition()
+        view.rvCourseList?.viewTreeObserver?.addOnPreDrawListener( object : ViewTreeObserver.OnPreDrawListener {
+            override fun onPreDraw(): Boolean {
+                startPostponedEnterTransition()
+                view.rvCourseList.viewTreeObserver.removeOnPreDrawListener( this )
+                return true
+            }
+        })
     }
 
-    override fun hidePlaceholder() {
-        view?.placeholder?.visibility = View.GONE
-    }
-
-    override fun showProgress() {
+    private fun showProgress   () {
         view?.progress?.visibility = View.VISIBLE
     }
 
-    override fun hideProgress() {
+    private fun hideProgress () {
         view?.progress?.visibility = View.GONE
     }
 
-    override fun showServiceCallError( error : String ) {
+    override fun showDetails(courseItem: CoursesItem) {
+        navigator.navigateToCourseDetails( courseItem )
+    }
 
-        refreshDone { }
+    override fun showDetails( courseItem : CoursesItem, sharedView : ImageView) {
+        navigator.navigateToCourseDetails( courseItem , sharedView )
+    }
 
-        checkEmptyAdapter()
+    private fun showList( list : MutableList<CoursesItem>? ){
 
-        snack( error )
+        list?.let {
+            if( it.isNotEmpty() ) {
+                adapter.addItems(it)
+            }
+            else {
+                checkEmptyAdapter()
+            }
+        }   ?:run {
+            checkEmptyAdapter()
+        }
+
+        refreshDone { snack( "getData done!") }
+        hideProgress()
 
     }
 
     private fun checkEmptyAdapter() {
         when( adapter.itemCount ){
-            0 -> presenter.adapterEmpty()
-            else -> presenter.adapterNotEmpty()
+            0 -> adapterIsEmpty()
+            else -> adapterIsNotEmpty()
         }
+    }
+
+    private fun adapterIsEmpty(){
+
+    }
+
+    private fun adapterIsNotEmpty(){
+
     }
 
     private fun refreshDone( exec : () -> Unit ) {

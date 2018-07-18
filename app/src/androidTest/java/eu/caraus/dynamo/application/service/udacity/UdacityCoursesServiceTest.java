@@ -20,7 +20,7 @@ public class UdacityCoursesServiceTest {
 
         UdacityCoursesService service = new UdacityCoursesService();
 
-        service.getCourses(new UdacityCoursesService.UdacityCoursesCallback() {
+        service.getUdacityCourses(new UdacityCoursesService.UdacityCoursesCallback() {
             @Override
             public void onData(UdacityCourses courses) {
 

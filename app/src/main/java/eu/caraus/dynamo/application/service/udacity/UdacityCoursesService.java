@@ -18,7 +18,7 @@ public class UdacityCoursesService {
 
     }
 
-    public void getCourses( UdacityCoursesCallback coursesCallback) {
+    public void getUdacityCourses(UdacityCoursesCallback coursesCallback) {
 
         udacityCoursesApi.getUdacityCoursesList().enqueue(
                 new Callback<UdacityCourses>() {
@@ -40,6 +40,17 @@ public class UdacityCoursesService {
 
     }
 
+    public UdacityCourses getUdacityCourses() throws Exception {
+
+        Response<UdacityCourses> courses
+                = udacityCoursesApi.getUdacityCoursesList().execute();
+
+        if( courses.isSuccessful() ){
+            return courses.body();
+        }
+
+        throw new Exception( courses.errorBody().toString() );
+    }
 
     public interface UdacityCoursesCallback {
         void onData( UdacityCourses courses );

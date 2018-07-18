@@ -16,7 +16,6 @@
 
         <activity
             android:name="eu.caraus.dynamo.application.ui.main.MainActivityViewImpl"
-            android:configChanges="orientation|keyboardHidden"
             android:theme="@style/AppTheme.MainTheme">
 
             <intent-filter>

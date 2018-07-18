@@ -1,37 +1,45 @@
 package eu.caraus.dynamo.application.ui.main.courselist
 
 import android.net.Uri
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.squareup.picasso.Picasso
-
 import eu.caraus.dynamo.R
 import eu.caraus.dynamo.application.domain.udacity.CoursesItem
 import kotlinx.android.synthetic.main.courses_list_item.view.*
 
-class CourseListAdapter(private val list : MutableList<CoursesItem>,
-                        private val listPresenter: CourseListContract.Presenter ) : RecyclerView.Adapter<CourseListAdapter.ViewHolder>() {
+class CourseListAdapter( private val list     : MutableList<CoursesItem> ,
+                         private val callback : CourseListCallback) : RecyclerView.Adapter<CourseListAdapter.ViewHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    interface CourseListCallback {
+        fun showDetails( courseItem : CoursesItem )
+        fun showDetails( courseItem : CoursesItem, sharedView : ImageView)
+    }
+
+    override fun onCreateViewHolder( parent : ViewGroup, viewType : Int ) : ViewHolder {
         return ViewHolder(
-                LayoutInflater.from( parent.context ).inflate( R.layout.courses_list_item, parent,
-                        false )
+                LayoutInflater.from( parent.context )
+                              .inflate( R.layout.courses_list_item,
+                                        parent,
+                            false )
         )
     }
 
-    override fun getItemCount(): Int {
+    override fun getItemCount() : Int {
         return list.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder : ViewHolder, position : Int) {
 
         val subject = list[ position ]
 
         holder.courseItemTitle.text = subject.title
-        holder.courseItemDesc.text  = subject.shortSummary
+        holder.courseItemDesc .text = subject.shortSummary
 
         Picasso.with( holder.itemView.context )
                 .load( Uri.parse( subject.image ))
@@ -39,33 +47,24 @@ class CourseListAdapter(private val list : MutableList<CoursesItem>,
                 .centerCrop()
                 .into( holder.courseItemIcon )
 
+        ViewCompat.setTransitionName( holder.itemView.courseItemImage, "transition_$position" )
+
         holder.itemView.setOnClickListener {
-            listPresenter.showDetails( subject )
+            callback.showDetails( subject, it.courseItemImage )
         }
 
     }
 
-    fun addItems(list : List<CoursesItem>){
+    fun addItems( list : List<CoursesItem> ){
         this.list.clear()
-        this.list.addAll(list)
+        this.list.addAll( list )
         notifyDataSetChanged()
-        
     }
 
-    fun getPositionByCourseKey( courseKey : String ) : Int {
-
-        list.forEach  {
-            if( it.key.equals( courseKey,true) )
-                return list.indexOf( it )
-        }
-
-        return 0
-    }
-
-    class ViewHolder( view : View ) : RecyclerView.ViewHolder( view ) {
-        val courseItemIcon  = view.courseItemImage
-        val courseItemTitle = view.courseItemTitle
-        val courseItemDesc  = view.courseItemShortDesc
+    class ViewHolder( view : View) : RecyclerView.ViewHolder( view ) {
+        val courseItemIcon  = view.courseItemImage!!
+        val courseItemTitle = view.courseItemTitle!!
+        val courseItemDesc  = view.courseItemShortDesc!!
     }
 
 }

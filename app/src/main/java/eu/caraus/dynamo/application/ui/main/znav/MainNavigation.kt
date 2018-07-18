@@ -2,8 +2,10 @@ package eu.caraus.dynamo.application.ui.main.znav
 
 import android.content.Context
 import android.support.annotation.IdRes
+import android.support.transition.Fade
 
 import android.support.v4.app.FragmentManager
+
 import android.support.v4.view.ViewCompat
 
 import android.widget.ImageView
@@ -14,105 +16,81 @@ import eu.caraus.dynamo.application.ui.main.coursedetails.CourseDetailsFragViewI
 import eu.caraus.dynamo.application.ui.main.courselist.CourseListFragViewImpl
 import java.lang.ref.WeakReference
 
+
 class MainNavigation( activity: BaseActivity, @param:IdRes @field:IdRes private val containerId: Int) {
 
     private val refContext: WeakReference<Context> = WeakReference( activity )
 
-    init {
-        // show back button toolbar depending on currently showing fragment
-        fragmentManager.addOnBackStackChangedListener {
-            (context() as BaseActivity)?.let {
-                it.supportActionBar?.let {
-                    it.setDisplayHomeAsUpEnabled(
-                            when( fragmentManager.findFragmentById(containerId) ){
-                                is CourseDetailsFragViewImpl -> true
-                                else -> false
-                            }
-                    )
-                }
-                it.invalidateOptionsMenu()
+    private val manager: FragmentManager?
+        get() {
+            context()?.let {
+                return (it as BaseActivity).supportFragmentManager
             }
+            return null
         }
+
+    private fun context(): Context? {
+        return refContext.get()
     }
-
-    private val fragmentManager: FragmentManager
-        get() = (context() as BaseActivity).supportFragmentManager
-
 
     fun navigateToCourseList() {
-        loadFragmentWithTag( getCoursesListFragment(), CourseListFragViewImpl.TAG )
-    }
-
-    fun navigateToCourseList( courseId: String ) {
-        loadFragmentWithTag( getCoursesListFragment( courseId ), CourseListFragViewImpl.TAG )
-    }
-
-    fun navigateToCourseDetails( courseId : String ) {
-        loadFragmentWithTag( getCourseDetailsFragment( courseId), CourseDetailsFragViewImpl.TAG )
+        loadFragment( getCoursesListFragment() )
     }
 
     fun navigateToCourseDetails( courseItem : CoursesItem) {
-        loadFragmentWithTag( getCourseDetailsFragment( courseItem), CourseDetailsFragViewImpl.TAG)
+        loadFragment( getCourseDetailsFragment( courseItem ))
     }
 
-    fun navigateToCourseDetails( courseItem : CoursesItem, sharedElement: ImageView ) {
-
-        val fragment = getCourseDetailsFragment( courseItem)
-
-//        fragment.sharedElementEnterTransition = DetailsTransition()
-//        fragment.enterTransition = Fade()
-//        fragment.exitTransition = Fade()
-//        fragment.sharedElementReturnTransition = DetailsTransition()
-
-        fragmentManager
-                .beginTransaction()
-                .addSharedElement( sharedElement, ViewCompat.getTransitionName( sharedElement))
-                .replace( containerId, fragment)
-                .commitNow()
-
+    fun navigateToCourseDetails( courseItem: CoursesItem, sharedElement: ImageView ){
+        loadFragmentWithSharedElement(
+                getCourseDetailsFragment( courseItem ,
+                                          ViewCompat.getTransitionName( sharedElement )),
+                                          sharedElement )
     }
 
     fun goBack() : Boolean {
-        return when( fragmentManager.backStackEntryCount ) {
-            1 -> false
-            else -> { fragmentManager.popBackStack() ; true }
-        }
+        manager?.popBackStack()
+        return false
     }
 
     private fun getCoursesListFragment() : CourseListFragViewImpl {
         return CourseListFragViewImpl.newInstance()
     }
 
-    private fun getCoursesListFragment( courseId : String ) : CourseListFragViewImpl {
-        return CourseListFragViewImpl.newInstance( courseId )
-    }
-
-    private fun getCourseDetailsFragment( courseId : String ) : CourseDetailsFragViewImpl {
-        return CourseDetailsFragViewImpl.newInstance( courseId )
-    }
-
     private fun getCourseDetailsFragment( courseItem : CoursesItem ) : CourseDetailsFragViewImpl {
-        return CourseDetailsFragViewImpl.newInstance( courseItem)
+        return CourseDetailsFragViewImpl.newInstance( courseItem )
     }
 
-    private fun loadFragmentWithTag(fragment: BaseFragment, tag: String) {
+    private fun getCourseDetailsFragment( courseItem : CoursesItem,  transitionName : String ) : CourseDetailsFragViewImpl {
+        return CourseDetailsFragViewImpl.newInstance( courseItem , transitionName )
+    }
 
-        val currentFragment = fragmentManager.findFragmentById( containerId )
+    private fun loadFragment( fragment : BaseFragment ) {
 
-        val transaction = fragmentManager.beginTransaction()
+        val transaction
+                = manager?.beginTransaction()
 
-        currentFragment?.let {
-            transaction.hide(it)
-        }
-
-        transaction.add( containerId, fragment)
-        transaction.addToBackStack( null )
-        transaction.commit()
+        transaction?.replace( containerId, fragment )
+        transaction?.setReorderingAllowed(true)
+        transaction?.addToBackStack(null)
+        transaction?.commit()
 
     }
 
-    private fun context(): Context? {
-        return refContext.get()
+    private fun loadFragmentWithSharedElement( fragment: BaseFragment, sharedElement: ImageView  ){
+
+        fragment.sharedElementEnterTransition  = DetailsTransition()
+        fragment.enterTransition = Fade()
+        fragment.exitTransition  = Fade()
+
+        val transaction = manager?.beginTransaction()
+
+        transaction?.setReorderingAllowed(true)
+        transaction?.addSharedElement( sharedElement , ViewCompat.getTransitionName( sharedElement ))
+        transaction?.replace( containerId, fragment )
+        transaction?.addToBackStack(null)
+        transaction?.commit()
+
     }
 
 }
