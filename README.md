@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-# UdacityApi
-=======
-# UdacityApiMvvm
+
 Udacity Courses Api Using Mvvn Design Pattern
->>>>>>> 6c1298c76f710edf3503b34f7cca2cbfbbe5cee3
+
+Technologies used : Java, Kotlin, Dagger2, Retrofit2, RxJava2, Picasso, Room 
