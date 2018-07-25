@@ -9,11 +9,11 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.view.ViewCompat
 
 import android.widget.ImageView
-import eu.caraus.dynamo.application.domain.udacity.CoursesItem
+import eu.caraus.dynamo.application.data.domain.udacity.CoursesItem
 import eu.caraus.dynamo.application.ui.base.BaseActivity
 import eu.caraus.dynamo.application.ui.base.BaseFragment
 import eu.caraus.dynamo.application.ui.main.coursedetails.CourseDetailsFragViewImpl
-import eu.caraus.dynamo.application.ui.main.courselist.CourseListFragViewImpl
+import eu.caraus.dynamo.application.ui.main.courselist.CourseListFragment
 import java.lang.ref.WeakReference
 
 
@@ -44,7 +44,7 @@ class MainNavigation( activity: BaseActivity, @param:IdRes @field:IdRes private 
     fun navigateToCourseDetails( courseItem: CoursesItem, sharedElement: ImageView ){
         loadFragmentWithSharedElement(
                 getCourseDetailsFragment( courseItem ,
-                                          ViewCompat.getTransitionName( sharedElement )),
+                                          ViewCompat.getTransitionName( sharedElement )!!),
                                           sharedElement )
     }
 
@@ -53,8 +53,8 @@ class MainNavigation( activity: BaseActivity, @param:IdRes @field:IdRes private 
         return false
     }
 
-    private fun getCoursesListFragment() : CourseListFragViewImpl {
-        return CourseListFragViewImpl.newInstance()
+    private fun getCoursesListFragment() : CourseListFragment {
+        return CourseListFragment.newInstance()
     }
 
     private fun getCourseDetailsFragment( courseItem : CoursesItem ) : CourseDetailsFragViewImpl {
@@ -86,7 +86,7 @@ class MainNavigation( activity: BaseActivity, @param:IdRes @field:IdRes private 
         val transaction = manager?.beginTransaction()
 
         transaction?.setReorderingAllowed(true)
-        transaction?.addSharedElement( sharedElement , ViewCompat.getTransitionName( sharedElement ))
+        transaction?.addSharedElement( sharedElement , ViewCompat.getTransitionName( sharedElement )!!)
         transaction?.replace( containerId, fragment )
         transaction?.addToBackStack(null)
         transaction?.commit()

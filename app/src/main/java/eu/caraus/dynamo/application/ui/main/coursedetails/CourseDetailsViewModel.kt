@@ -2,7 +2,7 @@ package eu.caraus.dynamo.application.ui.main.coursedetails
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import eu.caraus.dynamo.application.domain.udacity.CoursesItem
+import eu.caraus.dynamo.application.data.domain.udacity.CoursesItem
 
 class CourseDetailsViewModel : ViewModel() {
 
@@ -33,7 +33,7 @@ class CourseDetailsViewModel : ViewModel() {
             return
         }
 
-        item.instructors[0]?.let {
+        item.instructors!![0]?.let {
             instructorLogoUrl.value = it.image
             instructorName.value = it.name
             instructorBio.value = it.bio

@@ -1,6 +1,7 @@
 package eu.caraus.dynamo.application.ui.main
 
 import android.os.Bundle
+import com.idescout.sql.SqlScoutServer
 import eu.caraus.dynamo.R
 
 import eu.caraus.dynamo.application.ui.base.BaseActivity
@@ -18,8 +19,12 @@ class MainActivityViewImpl : BaseActivity() {
     @Inject
     lateinit var navigator : MainNavigation
 
+    lateinit var sqlScoutServer : SqlScoutServer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        sqlScoutServer = SqlScoutServer.create(this, packageName )
 
         setContentView( R.layout.activity_main )
         setSupportActionBar( toolbar )
@@ -35,6 +40,26 @@ class MainActivityViewImpl : BaseActivity() {
             1    -> finish()
             else -> navigator.goBack()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sqlScoutServer.resume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sqlScoutServer.pause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        sqlScoutServer.destroy()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
     }
 
 }

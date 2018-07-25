@@ -1,4 +1,3 @@
+Test Assignment for Udacity Api using MVVM pattern
 
-Udacity Courses Api Using Mvvn Design Pattern
-
-Technologies used : Java, Kotlin, Dagger2, Retrofit2, RxJava2, Picasso, Room 
+Technologies : Kotlin, Dagger, Retrofit2, RxJava2, Picasso, Room 

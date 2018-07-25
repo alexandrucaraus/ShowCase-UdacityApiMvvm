@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import eu.caraus.dynamo.R
-import eu.caraus.dynamo.application.domain.udacity.CoursesItem
+import eu.caraus.dynamo.application.data.domain.udacity.CoursesItem
 import kotlinx.android.synthetic.main.courses_list_item.view.*
 
 class CourseListAdapter( private val list     : MutableList<CoursesItem> ,

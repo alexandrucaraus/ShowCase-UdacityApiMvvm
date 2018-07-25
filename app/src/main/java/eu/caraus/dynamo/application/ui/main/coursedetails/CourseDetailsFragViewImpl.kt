@@ -11,7 +11,7 @@ import android.view.*
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import eu.caraus.dynamo.R
-import eu.caraus.dynamo.application.domain.udacity.CoursesItem
+import eu.caraus.dynamo.application.data.domain.udacity.CoursesItem
 import eu.caraus.dynamo.application.ui.base.BaseActivity
 import eu.caraus.dynamo.application.ui.base.BaseFragment
 import eu.caraus.dynamo.application.ui.main.znav.MainNavigation
